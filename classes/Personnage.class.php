@@ -9,21 +9,22 @@ class Personnage
   private $_experience;
  
   // Un tableau de données doit être passé à la fonction (d'où le préfixe « array »).
-public function hydrate(array $donnees)
-{
-  foreach ($donnees as $key => $value)
+  public function hydrate(array $donnees)
   {
-    // On récupère le nom du setter correspondant à l'attribut.
-    $method = 'set'.ucfirst($key);
-         
-    // Si le setter correspondant existe.
-    if (method_exists($this, $method))
+    foreach ($donnees as $key => $value)
     {
-      // On appelle le setter.
-      $this->$method($value);
+      // On récupère le nom du setter correspondant à l'attribut.
+      $method = 'set'.ucfirst($key);
+           
+      // Si le setter correspondant existe.
+      if (method_exists($this, $method))
+      {
+        // On appelle le setter.
+        $this->$method($value);
+      }
     }
   }
-}
+
  
   public function id() { return $this->_id; }
   public function nom() { return $this->_nom; }
